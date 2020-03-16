@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="874.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appstock.ProduitController">
+   <children>
+      <Label layoutX="355.0" layoutY="8.0" prefHeight="26.0" prefWidth="140.0" text="Products" textFill="#d79b25">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="user_table" layoutX="29.0" layoutY="61.0" prefHeight="116.0" prefWidth="835.0">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="75.0" text="ID" visible="false" />
+          <TableColumn fx:id="colcodeproduit" prefWidth="100.0" text="PRODUCT CODE" />
+            <TableColumn fx:id="colreference" prefWidth="84.0" text="REFERENCE" />
+            <TableColumn fx:id="coldeseignation" prefWidth="113.0" text="DESEIGNATION" />
+            <TableColumn fx:id="colShelf" prefWidth="87.0" text="SHELF" />
+            <TableColumn fx:id="colProvider" prefWidth="92.0" text="PROVIDER" />
+            <TableColumn fx:id="colDiscount" prefWidth="83.0" text="DISCOUNT" />
+            <TableColumn fx:id="colPrice" prefWidth="79.0" text="PRICE" />
+            <TableColumn fx:id="colStorage" prefWidth="75.0" text="STORAGE" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="33.0" layoutY="259.0" prefHeight="17.0" prefWidth="99.0" text="PRODUCT CODE :" />
+      <Label layoutX="355.0" layoutY="431.0" prefHeight="17.0" prefWidth="87.0" text="STORAGE    :" />
+      <Label layoutX="355.0" layoutY="377.0" prefHeight="17.0" prefWidth="87.0" text="PRICE          :" />
+      <Label layoutX="355.0" layoutY="321.0" prefHeight="17.0" prefWidth="87.0" text="DISCOUNT  :" />
+      <Label layoutX="355.0" layoutY="259.0" prefHeight="17.0" prefWidth="87.0" text="PROVIDER   :" />
+      <Label layoutX="33.0" layoutY="439.0" prefHeight="17.0" prefWidth="99.0" text="SHELF                  :" />
+      <Label layoutX="33.0" layoutY="377.0" prefHeight="17.0" prefWidth="99.0" text="DESIGNATION    :" />
+      <Label layoutX="33.0" layoutY="321.0" prefHeight="17.0" prefWidth="99.0" text="REFERENCE         :" />
+      <TextField fx:id="txtcodeproduit" layoutX="132.0" layoutY="255.0" />
+      <TextField fx:id="txtstock" layoutX="437.0" layoutY="427.0" />
+      <TextField fx:id="txtprix" layoutX="437.0" layoutY="373.0" />
+      <TextField fx:id="txtremise" layoutX="437.0" layoutY="317.0" />
+      <TextField fx:id="txtfournisseur" layoutX="437.0" layoutY="255.0" />
+      <TextField fx:id="txtrangement" layoutX="132.0" layoutY="436.0" />
+      <TextField fx:id="txtdesignation" layoutX="132.0" layoutY="373.0" />
+      <TextField fx:id="txtref" layoutX="132.0" layoutY="317.0" />
+      <Button layoutX="83.0" layoutY="506.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="57.0" text="ADD" />
+      <Button layoutX="460.0" layoutY="506.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="87.0" text="REFRESH" />
+      <Button layoutX="329.0" layoutY="506.0" mnemonicParsing="false" onAction="#Delete" prefHeight="25.0" prefWidth="75.0" text="DELETE" />
+      <Button layoutX="207.0" layoutY="506.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="MODIFY" />
+      <Label layoutX="616.0" layoutY="201.0" prefHeight="25.0" prefWidth="119.0" text="Search By Category :" />
+      <ComboBox fx:id="myCombobox" accessibleRoleDescription="Product code" layoutX="732.0" layoutY="201.0" opacity="0.87" prefHeight="25.0" prefWidth="132.0" promptText="Type" visibleRowCount="8" />
+      <TextField fx:id="txtrech" layoutX="688.0" layoutY="243.0" prefHeight="25.0" prefWidth="176.0" />
+      <Button layoutX="741.0" layoutY="284.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="106.0" text="Search" />
+   </children>
+</AnchorPane>

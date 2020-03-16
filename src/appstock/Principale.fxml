@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appstock.PrincipaleController">
+   <children>
+      <Label layoutX="216.0" layoutY="24.0" prefHeight="40.0" prefWidth="205.0" text="Administation" textFill="#f21313">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="104.0" prefHeight="20.0" prefWidth="294.0" text="Please chose one of the options bellow :" textFill="#0a3cf2">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="238.0" layoutY="151.0" mnemonicParsing="false" onAction="#Users" prefHeight="25.0" prefWidth="162.0" text="USERS" />
+      <Button layoutX="57.0" layoutY="305.0" mnemonicParsing="false" onAction="#Login" prefHeight="25.0" prefWidth="151.0" text="Return" />
+      <Button layoutX="238.0" layoutY="200.0" mnemonicParsing="false" onAction="#Cachier" prefHeight="25.0" prefWidth="162.0" text="CACHIER" />
+      <Button layoutX="238.0" layoutY="252.0" mnemonicParsing="false" onAction="#Produit" prefHeight="25.0" prefWidth="162.0" text="PRODUCTS" />
+   </children>
+</AnchorPane>
