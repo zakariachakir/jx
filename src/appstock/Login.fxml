@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -9,8 +10,7 @@
 <AnchorPane id="AnchorPane" prefHeight="502.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appstock.LoginController">
     <children>
         <Button fx:id="connection" layoutX="210.0" layoutY="322.0" onAction="#Connect" text="Connect" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Label layoutX="201.0" layoutY="61.0" prefHeight="35.0" prefWidth="175.0" text="Autentification" textFill="#d70909">
+      <Label layoutX="208.0" layoutY="62.0" prefHeight="35.0" prefWidth="187.0" text="Autentification" textFill="#d70909">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -18,8 +18,8 @@
       <Button layoutX="316.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="Cancel" />
       <Label layoutX="86.0" layoutY="163.0" prefHeight="25.0" prefWidth="109.0" text="USERNAME      :" />
       <Label layoutX="86.0" layoutY="243.0" prefHeight="25.0" prefWidth="89.0" text="PASSWORD     :" />
-      <TextField fx:id="txt_username" layoutX="210.0" layoutY="163.0" prefHeight="25.0" prefWidth="175.0" />
-      <TextField fx:id="txt_password" layoutX="210.0" layoutY="243.0" prefHeight="25.0" prefWidth="175.0" />
+      <TextField fx:id="txt_username" layoutX="208.0" layoutY="163.0" prefHeight="25.0" prefWidth="175.0" />
       <Label fx:id="jLabel" layoutX="210.0" layoutY="121.0" prefHeight="25.0" prefWidth="175.0" textFill="#f2096a" />
+      <PasswordField fx:id="txt_pass" layoutX="208.0" layoutY="243.0" prefHeight="25.0" prefWidth="175.0" />
     </children>
 </AnchorPane>

@@ -9,6 +9,7 @@ import application.BDD;
 import application.Parametre;
 import application.ResultSetTableModel;
 import appstock.Table.Productmaster;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
@@ -28,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -97,7 +103,7 @@ public class ProduitController implements Initializable {
         myCombobox.getItems().clear();
 
         myCombobox.getItems().addAll(
-                "Product Code",
+                "Product",
                 "Reference",
                 "Deseignation",
                 "Shelf",
@@ -125,6 +131,15 @@ public class ProduitController implements Initializable {
         fill(table());
     }
 
+      @FXML
+    public void Return(ActionEvent evt) throws IOException{
+    Node node = (Node) evt.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getResource("Principale.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+    }
+    
     @FXML
     public void search(ActionEvent evt) throws SQLException {
         if (txtrech.getText().equals("")) {
@@ -141,58 +156,88 @@ public class ProduitController implements Initializable {
                 fill(r);
 
             } else if (myCombobox.getValue().equals("Deseignation")) {
-                 clear();
-                ObservableList r=recherche("deseignation LIKE '%" + txtrech.getText() + "%' ");
+                clear();
+                ObservableList r = recherche("deseignation LIKE '%" + txtrech.getText() + "%' ");
                 fill(r);
             } else if (myCombobox.getValue().equals("Shelf")) {
-                 clear();
-                ObservableList r=recherche("rangement LIKE '%" + txtrech.getText() + "%' ");
+                clear();
+                ObservableList r = recherche("rangement LIKE '%" + txtrech.getText() + "%' ");
                 fill(r);
             } else if (myCombobox.getValue().equals("Provider")) {
-                 clear();
-                ObservableList r=recherche("fournisseur LIKE '%" + txtrech.getText() + "%' ");
+                clear();
+                ObservableList r = recherche("fournisseur LIKE '%" + txtrech.getText() + "%' ");
                 fill(r);
             } else if (myCombobox.getValue().equals("Discount")) {
-                  clear();
-                ObservableList r=recherche("remise =" + txtrech.getText());
+                clear();
+                ObservableList r = recherche("remise =" + txtrech.getText());
                 fill(r);
             } else if (myCombobox.getValue().equals("Price")) {
-                   clear();
-                ObservableList r=recherche("prix =" + txtrech.getText());
+                clear();
+                ObservableList r = recherche("prix =" + txtrech.getText());
                 fill(r);
             } else if (myCombobox.getValue().equals("Storage")) {
-                  clear();
-                ObservableList r=recherche("stock =" + txtrech.getText());
+                clear();
+                ObservableList r = recherche("stock =" + txtrech.getText());
                 fill(r);
             }
 
         }
 
-    
-    }
-    
-    public void clicked(MouseEvent evt){
-        
     }
 
     @FXML
-    public void Delete(ActionEvent evt) throws SQLException {
-       TablePosition t=(TablePosition) user_table.getSelectionModel().getSelectedCells().get(0);
-        int row=t.getRow();
-        
-        TableColumn tablecolumn=t.getTableColumn();
-       String id=(String) tablecolumn.getCellData(row);
-
-    if( 
-       JOptionPane.showConfirmDialog(null, "Do you really want to delete", "attention",
-               JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
-    
-               
-            System.out.println(db.queryDelete("produit", "id='"+id+"'"));
-            }
-        refresh();
+    public void clicked(MouseEvent evt) {
+        Productmaster p = (Productmaster) user_table.getSelectionModel().getSelectedItem();
+        txtcodeproduit.setText(String.valueOf(p.getProduct_Code()));
+        txtref.setText(String.valueOf(p.getReference()));
+        txtdesignation.setText(String.valueOf(p.getDeseignation()));
+        txtrangement.setText(String.valueOf(p.getShelf()));
+        txtfournisseur.setText(String.valueOf(p.getProvider()));
+        txtremise.setText(String.valueOf(p.getDiscount()));
+        txtprix.setText(String.valueOf(p.getPrice()));
+        txtstock.setText(String.valueOf(p.getStorage()));
     }
-    
+
+    @FXML
+    public void Modify(ActionEvent evt) throws SQLException {
+        if (txtcodeproduit.getText().equals("") || txtref.getText().equals("") || txtdesignation.getText().equals("") || txtfournisseur.getText().equals("")
+                || txtremise.getText().equals("") || txtprix.getText().equals("") || txtrangement.getText().equals("") || txtstock.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please fill the informations");
+        } else {
+            Productmaster p = (Productmaster) user_table.getSelectionModel().getSelectedItem();
+
+            clear();
+            String[] colon = {"code_produit", "reference", "deseignation", "rangement",
+                "fournisseur", "remise", "prix", "stock"};
+            String[] inf = {txtcodeproduit.getText(), txtref.getText(), txtdesignation.getText(), txtrangement.getText(),
+                txtfournisseur.getText(), txtremise.getText(), txtprix.getText(), txtstock.getText()};
+
+            String id = String.valueOf(p.getId());
+            System.out.println(db.queryUpdate("produit", colon, inf, "id='" + id + "'"));
+            fill(table());
+            actualiser();
+        }
+    }
+
+   
+
+    @FXML
+    public void Delete(ActionEvent evt) {
+        Productmaster p = (Productmaster) user_table.getSelectionModel().getSelectedItem();
+        String id = String.valueOf(p.getId());
+        System.out.println(id);
+        if (JOptionPane.showConfirmDialog(null, "Do you really want to delete", "attention",
+                JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+
+            System.out.println(db.queryDelete("produit", "id='" + id + "'"));
+        }
+        try {
+            refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @FXML
     public void Add(ActionEvent evt) throws SQLException {
         if (txtcodeproduit.getText().equals("") || txtref.getText().equals("") || txtdesignation.getText().equals("") || txtfournisseur.getText().equals("")
@@ -219,7 +264,7 @@ public class ProduitController implements Initializable {
         rs = db.querySelect(table, "produit");
         while (rs.next()) {
             Productmaster p = new Productmaster();
-            p.Id.set(rs.getInt("Id"));
+            p.Id.set(rs.getInt("id"));
             p.Product_Code.set(rs.getInt("code_produit"));
             p.Reference.set(rs.getString("reference"));
             p.Deseignation.set(rs.getString("deseignation"));
@@ -262,7 +307,7 @@ public class ProduitController implements Initializable {
     public void fill(ObservableList list) {
 
         colID.setCellValueFactory(
-                new PropertyValueFactory<Productmaster, Integer>("ID"));
+                new PropertyValueFactory<Productmaster, Integer>("Id"));
         colcodeproduit.setCellValueFactory(
                 new PropertyValueFactory<Productmaster, Integer>("Product_Code"));
         colreference.setCellValueFactory(

@@ -7,6 +7,7 @@ package appstock;
 
 import application.BDD;
 import application.Parametre;
+import com.sun.deploy.uitoolkit.ToolkitStore;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -20,8 +21,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -35,12 +36,11 @@ public class LoginController implements Initializable {
 
     @FXML
     private Label jLabel;
-
     @FXML
     private TextField txt_username;
     @FXML
-    private TextField txt_password;
-
+    public PasswordField txt_pass;
+    
     ResultSet rs;
     String username1, password1, hak;
     BDD db = new BDD(new Parametre().HOST_DB, new Parametre().USERNAME_DB, new Parametre().PASSWORD_DB, new Parametre().PORT, new Parametre().IPHOST);
@@ -49,7 +49,7 @@ public class LoginController implements Initializable {
     public void Connect(ActionEvent evt) throws IOException {
 
         rs = db.querySelectAll("utilisateur", " username='" + txt_username.getText() + "'and Password='"
-                + txt_password.getText() + "'");
+                + txt_pass.getText() + "'");
 
         try {
             while (rs.next()) {
@@ -63,8 +63,8 @@ public class LoginController implements Initializable {
         }
 
         if (username1 == null && password1 == null) {
-            JOptionPane.showMessageDialog(null, "Please insert something");
-            jLabel.setText("Please Insert Your Informations");
+            JOptionPane.showMessageDialog(null, "Please insert your credentials");
+            jLabel.setText("Please Insert Your Login and password");
             jLabel.setVisible(true);
         } else if (hak.equals("Director") || hak.equals("DIRECTOR")) {
             Node node = (Node) evt.getSource();
@@ -90,8 +90,10 @@ public class LoginController implements Initializable {
         alert.setContentText(message);
 
         alert.showAndWait();
+ 
     }
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
