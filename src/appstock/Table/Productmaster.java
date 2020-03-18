@@ -22,7 +22,7 @@ public class Productmaster {
    public SimpleIntegerProperty Discount = new SimpleIntegerProperty();
    public SimpleIntegerProperty Price = new SimpleIntegerProperty();
    public SimpleIntegerProperty Storage = new SimpleIntegerProperty();
-
+   
     public Integer getId() {
         return Id.get();
     }

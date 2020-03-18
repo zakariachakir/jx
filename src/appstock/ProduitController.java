@@ -123,10 +123,12 @@ public class ProduitController implements Initializable {
         txtprix.setText("");
         txtrangement.setText("");
         txtstock.setText("");
+        txtrech.setText("");
     }
 
     @FXML
     public void refresh() throws SQLException {
+        actualiser();
         user_table.getItems().clear();
         fill(table());
     }
@@ -327,6 +329,9 @@ public class ProduitController implements Initializable {
 
         user_table.setItems(list);
     }
+    
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
