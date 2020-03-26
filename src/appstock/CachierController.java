@@ -87,6 +87,9 @@ public class CachierController implements Initializable {
     @FXML
     private Label rp1;
 
+    @FXML
+    private Label labelReste;
+
 //table1
     @FXML
     private TableColumn<Productmaster, Integer> colID;
@@ -144,6 +147,7 @@ public class CachierController implements Initializable {
 
     }
 
+    @FXML
     public void clicked(MouseEvent evt) {
         Productmaster p = (Productmaster) user_table.getSelectionModel().getSelectedItem();
         txtcodeproduit.setText(String.valueOf(p.getProduct_Code()));
@@ -231,26 +235,26 @@ public class CachierController implements Initializable {
         fill(tablep());
         clearf();
         fillbill(tablef());
-        
+
     }
-    
+
     @FXML
     public void Return(ActionEvent evt) throws IOException {
-     Node node = (Node) evt.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-            Parent root = null;
+        Node node = (Node) evt.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(CachierController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
 
-}
-    
-    public void actualiser(){
-    txtcodeproduit.setText("");
+    }
+
+    public void actualiser() {
+        txtcodeproduit.setText("");
         txtref.setText("");
         txtrangement.setText("");
         txtfournisseur.setText("");
@@ -301,8 +305,14 @@ public class CachierController implements Initializable {
     public void payeapres() {
         int a = Integer.parseInt(rp1.getText().trim());
         int b = Integer.parseInt(txtcash.getText().trim());
-        int c = b - a;
-        reste.setText(Integer.toString(c));
+        int c = a - b;
+        if (c >= 0) {
+            reste.setText(Integer.toString(c));
+            labelReste.setText("TOTAL PAY AFTER        :");
+        } else if (c < 0) {
+            reste.setText(Integer.toString(c * -1));
+            labelReste.setText("TOTAL TO BE RETURNED   :");
+        } 
     }
 
     public ObservableList<Productmaster> recherche(String etat) throws SQLException {
@@ -340,7 +350,7 @@ public class CachierController implements Initializable {
             p.prix_vente.set(rs.getInt("prix_vente"));
             p.stock_sortie.set(rs.getInt("stock_sortie"));
             p.subtotal.set(rs.getInt("subtotal"));
-            
+
             dataf.add(p);
         }
         total();
@@ -350,10 +360,9 @@ public class CachierController implements Initializable {
 
     @FXML
     public void Searchb(ActionEvent evt) throws SQLException {
-    fillbill(recherchebill());
+        fillbill(recherchebill());
     }
-    
-    
+
     @FXML
     public void Deleteselected(ActionEvent evt) throws SQLException {
         Facturemaster p = (Facturemaster) tbl_facture.getSelectionModel().getSelectedItem();
@@ -366,10 +375,10 @@ public class CachierController implements Initializable {
             return;
         }
         clearf();
-        if(txtfacture.getText()!=""){
-        fillbill(recherchebill());}
-        else{
-        fillbill(tablef());
+        if (txtfacture.getText() != "") {
+            fillbill(recherchebill());
+        } else {
+            fillbill(tablef());
         }
 
     }
@@ -398,7 +407,7 @@ public class CachierController implements Initializable {
 
     public ObservableList<Facturemaster> tablef() throws SQLException {
         clearf();
-                String table[] = {"id", "num_facture", "code_produit", "reference", "prix_vente", "stock_sortie", "subtotal"};
+        String table[] = {"id", "num_facture", "code_produit", "reference", "prix_vente", "stock_sortie", "subtotal"};
 
         rs = db.querySelect(table, "vente");
         while (rs.next()) {
@@ -461,9 +470,6 @@ public class CachierController implements Initializable {
         tbl_facture.setItems(list);
     }
 
-    
-    
-    
     @FXML
     public void search(ActionEvent evt) throws SQLException {
         if (txtrech.getText().equals("")) {
@@ -522,6 +528,6 @@ public class CachierController implements Initializable {
             Logger.getLogger(CachierController.class.getName()).log(Level.SEVERE, null, ex);
         }
         setData();
-     }
+    }
 
 }

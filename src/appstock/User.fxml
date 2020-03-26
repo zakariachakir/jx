@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appstock.UserController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="806.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="appstock.UserController">
    <children>
-      <Label layoutX="314.0" layoutY="14.0" prefHeight="36.0" prefWidth="247.0" text="USERS ADMINISTRATION" textFill="#4ba129">
+      <Label layoutX="262.0" layoutY="15.0" prefHeight="36.0" prefWidth="293.0" text="USERS ADMINISTRATION" textFill="#0c7b93">
          <font>
-            <Font size="19.0" />
+            <Font size="25.0" />
          </font>
       </Label>
       <TableView fx:id="user_table" layoutX="33.0" layoutY="67.0" onMouseClicked="#clicked" prefHeight="184.0" prefWidth="741.0">
@@ -28,22 +28,25 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Label layoutX="43.0" layoutY="269.0" prefHeight="26.0" prefWidth="87.0" text="USER ID        :" />
-      <Label layoutX="43.0" layoutY="447.0" prefHeight="26.0" prefWidth="87.0" text="TYPE              :" />
-      <Label layoutX="43.0" layoutY="388.0" prefHeight="26.0" prefWidth="87.0" text="PASSWORD  :" />
-      <Label layoutX="43.0" layoutY="329.0" prefHeight="26.0" prefWidth="87.0" text="USERNAME   :" />
-      <Button layoutX="87.0" layoutY="507.0" mnemonicParsing="false" onAction="#Add" prefHeight="25.0" prefWidth="52.0" text="ADD" />
-      <Button layoutX="424.0" layoutY="507.0" mnemonicParsing="false" onAction="#refresh" text="REFRESH" />
-      <Button layoutX="314.0" layoutY="507.0" mnemonicParsing="false" onAction="#Delete" text="DELETE" />
-      <Button layoutX="201.0" layoutY="507.0" mnemonicParsing="false" onAction="#Modify" text="MODIFY" />
-      <TextField fx:id="txtid" layoutX="156.0" layoutY="270.0" />
-      <TextField fx:id="txtus" layoutX="156.0" layoutY="330.0" />
-      <TextField fx:id="txtpa" layoutX="156.0" layoutY="389.0" />
-      <ComboBox fx:id="Type" layoutX="156.0" layoutY="448.0" prefWidth="150.0" promptText="Job" />
-      <Label layoutX="503.0" layoutY="274.0" prefHeight="26.0" prefWidth="115.0" text="Search By Category  :" />
-      <ComboBox fx:id="Search" layoutX="618.0" layoutY="275.0" prefWidth="150.0" promptText="Categories" />
-      <TextField fx:id="txtrech" layoutX="619.0" layoutY="318.0" />
-      <Button layoutX="667.0" layoutY="363.0" mnemonicParsing="false" onAction="#Search" text="SEARCH" />
-      <Button layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#Return" prefHeight="25.0" prefWidth="103.0" text="RETURN" />
+      <Label layoutX="43.0" layoutY="269.0" prefHeight="26.0" prefWidth="103.0" text="USER ID          :" textFill="#81f5ff" />
+      <Label layoutX="43.0" layoutY="447.0" prefHeight="26.0" prefWidth="103.0" text="TYPE                :" textFill="#81f5ff" />
+      <Label layoutX="43.0" layoutY="388.0" prefHeight="26.0" prefWidth="103.0" text="PASSWORD    :" textFill="#81f5ff" />
+      <Label layoutX="43.0" layoutY="329.0" prefHeight="26.0" prefWidth="103.0" text="USERNAME     :" textFill="#81f5ff" />
+      <Button layoutX="79.0" layoutY="507.0" mnemonicParsing="false" onAction="#Add" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #8c9aed;" text="ADD" textFill="#0c7b93" />
+      <Button layoutX="409.0" layoutY="507.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #8c9aed;" text="REFRESH" textFill="#0c7b93" />
+      <Button layoutX="303.0" layoutY="507.0" mnemonicParsing="false" onAction="#Delete" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #8c9aed;" text="DELETE" textFill="#0c7b93" />
+      <Button layoutX="185.0" layoutY="507.0" mnemonicParsing="false" onAction="#Modify" prefHeight="26.0" prefWidth="87.0" style="-fx-background-color: #8c9aed;" text="MODIFY" textFill="#0c7b93" />
+      <TextField fx:id="txtid" layoutX="185.0" layoutY="274.0" prefHeight="26.0" prefWidth="205.0" />
+      <TextField fx:id="txtus" layoutX="185.0" layoutY="330.0" prefHeight="26.0" prefWidth="206.0" />
+      <TextField fx:id="txtpa" layoutX="185.0" layoutY="388.0" prefHeight="26.0" prefWidth="206.0" />
+      <ComboBox fx:id="Type" layoutX="185.0" layoutY="447.0" prefHeight="26.0" prefWidth="206.0" promptText="Job" style="-fx-background-color: #8c9aed;" />
+      <Label layoutX="453.0" layoutY="274.0" prefHeight="31.0" prefWidth="124.0" text="Search By Category  :" textFill="#0c7b93" />
+      <ComboBox fx:id="Search" layoutX="600.0" layoutY="275.0" prefHeight="31.0" prefWidth="168.0" promptText="Categories" style="-fx-background-color: #8c9aed;" />
+      <TextField fx:id="txtrech" layoutX="600.0" layoutY="318.0" prefHeight="31.0" prefWidth="168.0" />
+      <Button layoutX="601.0" layoutY="363.0" mnemonicParsing="false" onAction="#Search" prefHeight="26.0" prefWidth="168.0" style="-fx-background-color: #8c9aed;" text="SEARCH" textFill="#0c7b93">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button layoutX="33.0" layoutY="20.0" mnemonicParsing="false" onAction="#Return" prefHeight="25.0" prefWidth="103.0" style="-fx-background-color: #8c9aed;" text="RETURN" />
    </children>
 </AnchorPane>
